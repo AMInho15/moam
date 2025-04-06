@@ -1,0 +1,38 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout') {
+            steps {
+                git 'https://github.com/votre-repo/tricot.git'
+            }
+        }
+
+        stage('Build Docker') {
+            steps {
+                sh 'docker-compose build'
+            }
+        }
+
+        stage('Run Tests') {
+            steps {
+                sh 'docker-compose run --rm app php artisan test'
+            }
+        }
+
+        stage('Deploy') {
+            when {
+                branch 'main'
+            }
+            steps {
+                sh 'docker-compose up -d --force-recreate'
+            }
+        }
+    }
+
+    post {
+        always {
+            cleanWs()
+        }
+    }
+}
