@@ -13,7 +13,7 @@ pipeline {
                 sh 'docker-compose build'
             }
         }
-
+//hdd
         stage('Run Tests') {
             steps {
                 sh 'docker-compose run --rm app php artisan test'
