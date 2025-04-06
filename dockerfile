@@ -15,3 +15,4 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-install zip pdo_mysql
 
 CMD ["php-fpm"]
+#fini
