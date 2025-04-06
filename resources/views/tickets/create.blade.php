@@ -35,7 +35,7 @@
                     @endif
 
                     <!-- Formulaire de Création -->
-                    <form id="ticketForm" action="{{ route('tickets.store') }}" method="POST" enctype="multipart/form-data" class="space-y-6">
+                    <form id="ticketForm" action="{{ route('tickets.store') }}" method="POST" class="space-y-6">
                         @csrf
 
                         <!-- Titre -->
@@ -170,22 +170,6 @@
                             </div>
                         </div>
 
-                        <!-- Fichiers Joints -->
-                        <div class="space-y-2">
-                            <label for="attachments" class="block text-sm font-medium text-gray-700 flex items-center">
-                                <i class="fas fa-paperclip mr-2 text-blue-500"></i>Fichiers Joints (Optionnel)
-                            </label>
-                            <div class="relative">
-                                <input type="file" name="attachments[]" id="attachments" multiple 
-                                       class="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 transition-all duration-200">
-                                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                    <i class="fas fa-cloud-upload-alt text-gray-400"></i>
-                                </div>
-                            </div>
-                            <div id="filePreview" class="mt-2 space-y-2"></div>
-                            <p class="text-xs text-gray-500 mt-1">Formats acceptés : .jpg, .png, .pdf, .doc, .docx (Max 5MB par fichier)</p>
-                        </div>
-
                         <!-- Boutons - Section bien visible -->
                         <div class="flex justify-end space-x-4 pt-8 border-t border-gray-200 mt-8">
                             <a href="{{ route('tickets.index') }}" class="inline-flex items-center px-6 py-3 bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium rounded-lg transition-all duration-200 shadow-sm hover:shadow-md">
@@ -211,7 +195,7 @@
             if (description && charCount) {
                 description.addEventListener('input', function() {
                     const count = this.value.length;
-                    charCount.textContent = `${count}/2000 caractères`;
+                    charCount.textContent = ${count}/2000 caractères;
                     
                     if (count < 30) {
                         charCount.classList.add('text-red-500');
@@ -224,66 +208,6 @@
                 
                 // Déclenche l'événement input pour initialiser le compteur
                 description.dispatchEvent(new Event('input'));
-            }
-
-            // Prévisualisation des fichiers joints
-            const attachments = document.getElementById('attachments');
-            const filePreview = document.getElementById('filePreview');
-            
-            if (attachments && filePreview) {
-                attachments.addEventListener('change', function() {
-                    filePreview.innerHTML = '';
-                    
-                    if (this.files.length > 0) {
-                        const fileList = document.createElement('div');
-                        fileList.className = 'space-y-2';
-                        
-                        Array.from(this.files).forEach(file => {
-                            const fileItem = document.createElement('div');
-                            fileItem.className = 'flex items-center justify-between p-2 bg-gray-50 rounded-lg';
-                            
-                            const fileInfo = document.createElement('div');
-                            fileInfo.className = 'flex items-center';
-                            
-                            const fileIcon = document.createElement('i');
-                            fileIcon.className = 'fas fa-file text-gray-500 mr-2';
-                            
-                            const fileName = document.createElement('span');
-                            fileName.className = 'text-sm text-gray-700';
-                            fileName.textContent = file.name;
-                            
-                            const fileSize = document.createElement('span');
-                            fileSize.className = 'text-xs text-gray-500 ml-2';
-                            fileSize.textContent = `(${(file.size / 1024 / 1024).toFixed(2)} MB)`;
-                            
-                            fileInfo.appendChild(fileIcon);
-                            fileInfo.appendChild(fileName);
-                            fileInfo.appendChild(fileSize);
-                            
-                            const removeBtn = document.createElement('button');
-                            removeBtn.type = 'button';
-                            removeBtn.className = 'text-red-500 hover:text-red-700';
-                            removeBtn.innerHTML = '<i class="fas fa-times"></i>';
-                            removeBtn.addEventListener('click', () => {
-                                // Créer un nouveau DataTransfer pour supprimer le fichier
-                                const newFiles = new DataTransfer();
-                                Array.from(attachments.files).forEach(f => {
-                                    if (f !== file) {
-                                        newFiles.items.add(f);
-                                    }
-                                });
-                                attachments.files = newFiles.files;
-                                fileItem.remove();
-                            });
-                            
-                            fileItem.appendChild(fileInfo);
-                            fileItem.appendChild(removeBtn);
-                            fileList.appendChild(fileItem);
-                        });
-                        
-                        filePreview.appendChild(fileList);
-                    }
-                });
             }
 
             // Validation du formulaire avant soumission

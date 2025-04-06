@@ -2,58 +2,163 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Fond blanc pour le corps de la page */
+/* Fond général de la page */
 body {
-    background-color: #ffffff;
+    background-color: #f4f7fc; /* Fond clair et doux */
+    font-family: 'Poppins', sans-serif; /* Police moderne et élégante */
+    color: #2d2d2d; /* Texte sombre pour le contraste */
 }
 
 /* Cartes principales */
 .card {
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff; /* Fond blanc pour les cartes */
+    border-radius: 16px; /* Coins arrondis plus marqués */
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1); /* Ombre douce mais visible */
     overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-}
-
-.card-header {
-    background-color: #0d6efd;
-    color: #fff;
-    padding: 15px;
-    font-size: 1rem;
-    font-weight: bold;
-    text-transform: uppercase;
-}
-
-.card-body {
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+    margin-bottom: 30px;
     padding: 20px;
 }
 
+/* Animation au survol des cartes */
+.card:hover {
+    transform: translateY(-12px); /* Effet de remontée plus marqué */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); /* Ombre plus prononcée au survol */
+    background-color: #f9fafb; /* Couleur douce au survol */
+}
+
+/* Header de la carte */
+.card-header {
+    background-color: #3498db; /* Bleu vif pour attirer l'attention */
+    color: #ffffff;
+    padding: 20px;
+    font-size: 1.3rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    text-align: center;
+    letter-spacing: 1px; /* Espacement des lettres pour plus d'impact */
+}
+
+/* Corps de la carte */
+.card-body {
+    padding: 20px;
+    color: #333333;
+}
+
+/* Texte dans la carte */
 .card-text {
     font-size: 1rem;
-    color: #555;
-    margin-bottom: 15px;
+    color: #555555;
+    line-height: 1.8; /* Espacement amélioré entre les lignes */
+    margin-bottom: 20px;
 }
 
+/* Bouton de la carte */
 .card-button {
     display: inline-block;
-    padding: 10px 20px;
-    font-size: 1rem;
-    font-weight: bold;
-    color: #fff;
-    background-color: #0d6efd;
+    padding: 14px 28px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: white;
+    background-color: #3498db; /* Bleu vif pour le bouton */
     border: none;
-    border-radius: 8px;
+    border-radius: 10px;
     cursor: pointer;
+    text-align: center;
     text-decoration: none;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    margin-top: 20px; /* Espace au-dessus du bouton */
 }
 
+/* Effet de survol pour le bouton */
 .card-button:hover {
-    background-color: #0b5ed7;
+    background-color: #2980b9; /* Bleu foncé au survol */
+    transform: translateY(-4px); /* Légère remontée */
+}
+
+/* Ajout d'un fond de page personnalisé */
+.bg-custom {
+    background-color: #f0f4f8; /* Fond gris clair pour l'ensemble */
+}
+
+/* Titres de la page */
+h1, h2, h3 {
+    color: #2c3e50; /* Gris foncé pour les titres */
+    font-weight: 700;
+    margin-bottom: 25px;
+}
+
+h1 {
+    font-size: 3rem;
+    text-transform: uppercase;
+}
+
+h2 {
+    font-size: 2.4rem;
+    font-weight: 600;
+}
+
+h3 {
+    font-size: 1.8rem;
+    font-weight: 500;
+}
+
+/* Mise en forme des alertes */
+.alert-success {
+    background-color: #e8f7e8; /* Vert clair */
+    border-left: 5px solid #2ecc71; /* Bordure verte */
+    color: #27ae60;
+    padding: 18px;
+    font-size: 1rem;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.alert-error {
+    background-color: #fce4e4; /* Fond rouge clair */
+    border-left: 5px solid #e74c3c; /* Bordure rouge */
+    color: #c0392b;
+    padding: 18px;
+    font-size: 1rem;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+/* Conteneur général */
+.container {
+    background-color: #ffffff; /* Blanc pour le contenu */
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1); /* Ombre douce */
+}
+
+/* Amélioration du design des tables */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table th, table td {
+    padding: 14px;
+    text-align: left;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+table th {
+    background-color: #3498db;
+    color: white;
+    font-weight: bold;
+}
+
+table tr:hover {
+    background-color: #f1f5f9; /* Survol léger de la ligne */
+}
+
+/* Ajout d'un fond sombre pour certaines sections */
+.bg-dark {
+    background-color: #2c3e50; /* Fond sombre pour sections spéciales */
+    color: #ffffff;
+    padding: 40px;
+    border-radius: 12px;
 }
